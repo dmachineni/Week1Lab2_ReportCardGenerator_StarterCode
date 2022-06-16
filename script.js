@@ -241,7 +241,8 @@ function closeDropdown(dropdownElement) {
 
 function openDropdown(dropdownElement) {
   // code goes here
-  dropdownElement.remove("closed")
+  console.log("called")
+  dropdownElement.classList.remove("closed")
 }
 
 //ADDED
@@ -259,7 +260,7 @@ function handleDropdownClick(dropdownElement) {
  *
  */
 function updateDropdownLabel() {
-  dropdownSemesterLabelEl = semester
+  dropdownSemesterLabelEl= semester
 }
 
 /**
@@ -279,20 +280,20 @@ function addEventListeners(
   // Add 3 event listeners - one for the fall semester option, the spring semester option, and the winter term option
   // Each callback function one should update the `semester` variable,
   // call the `updateReportCard` function, and close the dropdown
-  dropdownButtonElement.addEventListeners('click', () => openDropdown(dropdownElement))
-  fallSemesterElement.addEventListeners('click', (event)=> {
+  dropdownButtonElement.addEventListener('click', () => openDropdown(dropdownElement))
+  fallSemesterElement.addEventListener('click', (event)=> {
     event.stopPropagation(dropdownElement)
     updateReportCard(reportCardTableElement, 'Fall Semester')
     closeDropdown(dropdownElement)
   })
 
-  springSemesterElement.addEventListeners('click', (event)=> {
+  springSemesterElement.addEventListener('click', (event)=> {
     event.stopPropagation()
     updateReportCard(reportCardTableElement, 'Spring Semester')
     closeDropdown(dropdownElement)
   })
 
-  winterTermElement.addEventListeners('click', (event)=> {
+  winterTermElement.addEventListener('click', (event)=> {
     event.stopPropagation()
     updateReportCard(reportCardTableElement, 'Winter Term')
     closeDropdown(dropdownElement)
@@ -336,7 +337,7 @@ function calculateSemesterGpa(reportCardTableElement) {
 window.onload = function () {
   // execute your functions here to make sure they run as soon as the page loads
   populateStudentInfo(studentInformation)
-  addEventListeners(dropdownSemesterdivEl,dropdownSemesterh2El,reportCarTableEl,fallsemesterEl,springSemesterEl,winterTermEl)
+  addEventListeners(dropdownEl,dropdownSemesterh2El,reportCarTableEl,fallsemesterEl,springSemesterEl,winterTermEl)
   updateReportCard(reportCarTableEl,semester)
 }
 
